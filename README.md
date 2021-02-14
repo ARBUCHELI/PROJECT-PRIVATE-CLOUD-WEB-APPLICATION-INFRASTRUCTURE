@@ -1,4 +1,4 @@
-# Project-Private-Cloud-Web-Application-Infraestructure
+# Project-Private-Cloud-Web-Application-Infrastructure
 First Project of Udacity and Nutanix Hybrid Cloud Engineer Nanodegree Program
 
 # 1. Project Overview
