@@ -1,0 +1,88 @@
+Dear CTO (The E-Commerce Company)
+
+Kind regards,
+
+I am writing to present the results of the Hyperconverged solution demo requested by the company. 
+
+The information is presented in a summarized form to facilitate the review.
+
+***** Attached Documents: ANDRESREGALADOBUCHELI-HybridCloud-Nutanix_Cluster_as_Built_2021-02-07_073339.xlsx
+
+
+STAKEHOLDERS NEEDS:
+
+	- 3-Tier Application:
+		- VMs:
+			* Database server (Microsoft SQL on Windows). (1 vCPU and 4 GB of RAM)-----  
+			* Application server (CentOS Linux). (1 vCPU and 4 GB of RAM)-------------- |-------> Images in Storage Container (name: Images)             
+			* Web server (CentOS Linux). (1 vCPU and 4 GB of RAM)---------------------- 
+			* 6 VMs (app-prod,db-prod,web-prod) 
+				(app-dev, db-dev, web-dev)----> Duplicated                 
+
+			* Additional tests: - cloning, dynamically add 1vCPU and 2GB to db server.
+					    - Removal of a VM and perform a full restoration.
+
+		- Two environments:
+			* Production (built-in data protection using backup/restore with snapshots and no more than 1 hour of data loss after a failure).
+			  (managed using IPAM/DHCP from IP pool, vlan 0, 172.31.0.0/24.  Start: 172.31.0.210 
+											 End: 172.31.0.230.
+			* Development.
+			  (Unmanaged on vlan 101, 172.31.101.0/24)
+
+		- Testing: 
+			* NTP (pool.ntp.org) and 8.8.8.8 for DNS.
+_______________________________________________________________________________________________________________________________________________________________________
+
+TASKS: 
+	- Configurations:
+
+		* The NTP server to the HCI Cloud Platform. (pool.ntp.org) --|___ Settings, NTP Servers, NTP Sever: pool.ntp.org, +Add
+		* The Name Server to the HCI Cloud Platform. (IP 8.8.8.8)  --|___ Settings, Name Servers, Server IP: 8.8.8.8, +Add
+
+		* A managed virtual network using IPAM/DHCP in the HCI Cloud Platform:
+			- Settings, Network configuration, Network Name: production-net, VLAN ID: 0, Subnet: 172.31.0.0/24
+			- Pool address : 172.31.0.210 - 172.31.0.230
+
+		* An unmanaged virtual network in the HCI Cloud Platform.
+			- Settings, Network configuration, Network Name: development-nt, VLAN ID: 101
+
+		* A storage container to the HCI Cloud Platform and upload Windows and Linux (CentOS) virtual disk images to the new container:
+			- Home menu -> Storage -> + Storage Container -> Name: Images -> Save	
+			- Gear Icon -> Image Configuration -> + Upload Image -> Name: CentOS -> Annotation: Linux -> Storage Container: Images 
+				-> Upload a file: CentOS.qcow2 -> Save
+			- Gear Icon -> Image Configuration -> + Upload Image -> Name: Windows -> Annotation: Windows -> Storage Container: Images 
+				-> Upload a file: Windows.qcow2 -> Save
+
+		* Deploying Windows and Linux virtual machines in the HCI Cloud Platform. (Description of the process for the production VMs, ex: app-prod)
+			- Home menu -> VM -> + Create VM -> Name: app-prod -> Description: app production vm -> vCPU(s): 1, Number Of Cores per vCPU: 2
+			  Memory: 4 GiB -> + Add New Disk, Type: DISK, Operation: Clone from Image Service, Bus Type: IDE, Image: CentOS, -> Add ->
+			  Legacy BIOS: DISK(ide.1) -> Add New NIC: production-net -> Add -> Set Affinity -> Save
+
+		* Creating virtual machine clones and change configurations in the HCI Cloud Platform. (Description o the proccess for development VMs, ex: db-prod)
+			- Select db-prod -> clone -> edit name to db-dev, delete NIC and Add New NIC: development-net
+
+		* Creating data protection configurations to automate virtual machine snapshots.
+			- Home menu -> Data Protection -> + Protection Domain -> NAME: productionprotect -> Select: app-prod,db-prod,web-prod -> Next ->
+			  New Schedule: Select Repeat every 1 hour(s), Select Start Date -> Create Schedule
+
+		* Dynamically add CPU/Memory resources to online VMs
+			- In order to chek this feature, 1 vCPU and 2GB memory were added to db-prod and restored to the original state for consistency. After this 
+			  change, the vm has 2 vCPU and 6 GB of memory, but it was restored before clonning. 
+			 (This operation cannot be done simultaneously.  First add the vCPU and then add 2GB to the memory)
+
+		* Performing virtual machine restorations using the data protection snapshots.
+      			- In order to check this feature the web-prod VM was deleted on production (Checking first that there was a snapshot and it was restored with
+			a new name)
+			- From the Data Protection dashboard, use the snapshot to restore the deleted vm.  Select the option Create new entities.
+
+							    
+
+At the time of testing the demo, all tasks were performed successfully and the adoption of this solution will represent great benefits for your company.  
+
+Please do not hesitate to contact us in case you have any technical questions and remember that our goal is to create solutions that represent value for our customers.
+
+Respectfully, 
+
+Andrés Regalado Bucheli
+Hybrid Cloud Engineer
+
