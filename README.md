@@ -61,14 +61,49 @@ Systems Administration
 Directions
 Refer to the e-mails provided in the project to set the correct configurations for the following:
 
-# 1. The NTP server to the HCI Cloud Platform.
-# 2. The Name Server to the HCI Cloud Platform.
-# 3. A managed virtual network using IPAM/DHCP in the HCI Cloud Platform.
-# 4. An unmanaged virtual network in the HCI Cloud Platform.
-# 5. A storage container to the HCI Cloud Platform and upload Windows and Linux (CentOS) virtual disk images to the new container.
-# 6. Deploying Windows and Linux virtual machines in the HCI Cloud Platform.
-# 7. Creating virtual machine clones and change configurations in the HCI Cloud Platform.
-# 8. Creating data protection configurations to automate virtual machine snapshots.
-# 9. Performing virtual machine restorations using the data protection snapshots.
+* 1. The NTP server to the HCI Cloud Platform.
+* 2. The Name Server to the HCI Cloud Platform.
+* 3. A managed virtual network using IPAM/DHCP in the HCI Cloud Platform.
+* 4. An unmanaged virtual network in the HCI Cloud Platform.
+* 5. A storage container to the HCI Cloud Platform and upload Windows and Linux (CentOS) virtual disk images to the new container.
+* 6. Deploying Windows and Linux virtual machines in the HCI Cloud Platform.
+* 7. Creating virtual machine clones and change configurations in the HCI Cloud Platform.
+* 8. Creating data protection configurations to automate virtual machine snapshots.
+* 9. Performing virtual machine restorations using the data protection snapshots.
 
+## Project Submission Directions
 
+After you have set the configurations as directed on the previous Project Workspace page, follow the steps below when you are ready to submit your project.
+
+* 1. Open a text editor and compose an email message to the CTO. The contents of the email should include a summary of the stakeholder needs and an outline of the tasks performed. This text email file will be included in your project submission.
+
+* 2. You will need the information shown below to capture your cluster configuration for project submission. In your project workspace, in the Frame Desktop, open the Password.txt file and use only the values highlighted below when prompted.
+
+![](https://video.udacity-data.com/topher/2020/September/5f651c6e_screen-shot-2020-09-18-at-1.45.14-pm/screen-shot-2020-09-18-at-1.45.14-pm.png)
+
+* 3. Open a command line interface (terminal). To do this, click the Windows symbol in the lower-left corner of your Frame Desktop and select Windows PowerShell. A window titled "Administrator: Windows PowerShell" should appear, as shown below.
+
+![](https://video.udacity-data.com/topher/2020/September/5f651d2d_screen-shot-2020-09-18-at-1.48.24-pm/screen-shot-2020-09-18-at-1.48.24-pm.png)
+
+* 4. Type the following commands, in order, from top to bottom:
+* In the command syntax, replace <YOUR_FULL_NAME> with your first and last name.
+* In the command syntax, replace <IP_ADDRESS> with the IP address found in the URL entry in the Password.txt file.
+* When you have replaced the values with the requested information, press the Enter key.
+* When prompted to enter Nutanix Cluster Username: type "admin".
+* When prompted to enter Nutanix Cluster Password for 'admin': type the Password found in the Password.txt file as shown above in step 2.
+
+![](https://video.udacity-data.com/topher/2020/September/5f651df5_screen-shot-2020-09-18-at-1.51.44-pm/screen-shot-2020-09-18-at-1.51.44-pm.png)
+
+An Excel (.xlsx) document will be created in the C:\Configuration_Documenter folder.
+
+* 5. Using Windows Explorer, navigate to the C:\Configuration_Documenter folder.
+
+* 6. Right-click the <your_name>-HybridCloud-Nutanix_Cluster_as_Built_<date_timestamp> and select Download with Frame.
+
+* 7. After the file is downloaded to your local system, right-click and compress/zip the text file containing your email to the CTO and the Excel spreadsheet.
+
+* 8. Both your text file and the Excel doc should be included in one zip file for your project submission.
+
+* 9. Use the blue Submit Project button to upload your zip file and submit your project!
+
+# Adaptation as a repository: Andrés R. Bucheli.
